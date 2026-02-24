@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora - Ejercicio 1</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #eef2f7;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 24px;
+      width: 340px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    }
+
+    .card-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #1a1a2e;
+      margin-bottom: 20px;
+    }
+
+    .card-title .icon {
+      font-size: 1.2rem;
+    }
+
+    label {
+      display: block;
+      font-size: 0.85rem;
+      color: #555;
+      margin-bottom: 5px;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      border: 1px solid #dde3ee;
+      border-radius: 6px;
+      padding: 10px 14px;
+      font-size: 0.95rem;
+      color: #333;
+      background: #fafbfc;
+      outline: none;
+      transition: border-color 0.2s;
+      margin-bottom: 14px;
+    }
+
+    input[type="text"]:focus {
+      border-color: #3b82f6;
+      background: #fff;
+    }
+
+    input[name="resultado"] {
+      color: #555;
+      cursor: default;
+    }
+
+    .btn-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .btn {
+      flex: 1;
+      border: none;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      padding: 11px 6px;
+      cursor: pointer;
+      transition: opacity 0.15s, transform 0.1s;
+    }
+
+    .btn:hover  { opacity: 0.88; transform: translateY(-1px); }
+    .btn:active { transform: translateY(0); }
+
+    .btn-sumar  { background: #3b82f6; color: #fff; }
+    .btn-restar { background: #3b82f6; color: #fff; }
+    .btn-mult   { background: #3b82f6; color: #fff; }
+    .btn-div    { background: #3b82f6; color: #fff; }
+  </style>
+
+  <script>
+    function sumar() {
+      let num1, num2, res;
+      num1 = parseFloat(document.calculadora.valor1.value);
+      num2 = parseFloat(document.calculadora.valor2.value);
+      res = num1 + num2;
+      document.calculadora.resultado.value = isNaN(res) ? "Error" : res;
+    }
+
+    function restar() {
+      let num1, num2, res;
+      num1 = parseFloat(document.calculadora.valor1.value);
+      num2 = parseFloat(document.calculadora.valor2.value);
+      res = num1 - num2;
+      document.calculadora.resultado.value = isNaN(res) ? "Error" : res;
+    }
+
+    function multiplicar() {
+      let num1, num2, res;
+      num1 = parseFloat(document.calculadora.valor1.value);
+      num2 = parseFloat(document.calculadora.valor2.value);
+      res = num1 * num2;
+      document.calculadora.resultado.value = isNaN(res) ? "Error" : res;
+    }
+
+    function dividir() {
+      let num1, num2, res;
+      num1 = parseFloat(document.calculadora.valor1.value);
+      num2 = parseFloat(document.calculadora.valor2.value);
+      if (num2 === 0) {
+        document.calculadora.resultado.value = "No se divide entre 0";
+      } else {
+        res = num1 / num2;
+        document.calculadora.resultado.value = isNaN(res) ? "Error" : res;
+      }
+    }
+  </script>
+</head>
+<body>
+  <form name="calculadora">
+    <div class="card">
+
+      <div class="card-title">
+        <span class="icon">📟</span>
+        Vista Previa
+      </div>
+
+      <label>Primer número</label>
+      <input type="text" name="valor1" placeholder="0">
+
+      <label>Segundo número</label>
+      <input type="text" name="valor2" placeholder="0">
+
+      <div class="btn-row">
+        <input type="button" class="btn btn-sumar"  value="SUMAR"  onclick="sumar()">
+        <input type="button" class="btn btn-restar" value="RESTAR" onclick="restar()">
+        <input type="button" class="btn btn-mult"   value="MULT"   onclick="multiplicar()">
+        <input type="button" class="btn btn-div"    value="DIV"    onclick="dividir()">
+      </div>
+
+      <label>Resultado</label>
+      <input type="text" name="resultado" readonly placeholder="...">
+
+    </div>
+  </form>
+</body>
+</html>
